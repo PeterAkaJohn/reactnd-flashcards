@@ -3,26 +3,25 @@ import { StyleSheet, Text, View } from "react-native";
 import { connect } from "react-redux";
 import { getDecks } from "../../actions";
 
-class Decks extends Component {
-  componentDidMount() {
-    this.props.getDecks().then(data => {
-      console.log(data);
-    });
-  }
-  render() {
-    return (
-      <View>
-        <Text>{this.props.decks && JSON.stringify(this.props.decks)}</Text>
-      </View>
-    );
-  }
-}
-function mapStateToProps(state) {
-  return {
-    decks: Object.keys(state.decks).map(deck => {
-      return state.decks[deck];
-    })
-  };
+import withDecks from "../hoc/withDecks";
+import DeckList from "./DeckList";
+
+function Decks(props) {
+  return (
+    <View style={styles.container}>
+      <DeckList style={styles.deckList} decks={props.decks} {...props} />
+    </View>
+  );
 }
 
-export default connect(mapStateToProps, { getDecks })(Decks);
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  deckList: {
+    flex: 1,
+    width: "100%"
+  }
+});
+
+export default withDecks(Decks);
