@@ -4,7 +4,10 @@ import { getDefaultDeckObject, startingState } from "./helper";
 const STORAGE_KEY = "reactnd-flashcards";
 
 function initializeStorage() {
-  return AsyncStorage.setItem(STORAGE_KEY, startingState).then(function() {
+  return AsyncStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(startingState)
+  ).then(function() {
     return startingState;
   });
 }
@@ -32,7 +35,9 @@ export function saveDeckTitle(deckName) {
     JSON.stringify({
       [deckName]: getDefaultDeckObject(deckName)
     })
-  );
+  ).then(() => {
+    return getDefaultDeckObject(deckName);
+  });
 }
 
 // card is made up of question and answer strings
