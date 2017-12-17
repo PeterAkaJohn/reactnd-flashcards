@@ -20,9 +20,11 @@ class NewDeck extends Component {
 
   onSubmitDeck() {
     const { text } = this.state;
-    this.props.insertNewDeck(text).then(data => {
-      this.props.navigation.navigate("DeckDetail", { deck: data });
-    });
+    if (text) {
+      this.props.insertNewDeck(text).then(data => {
+        this.props.navigation.navigate("DeckDetail", { deckName: data.title });
+      });
+    }
   }
   render() {
     return (

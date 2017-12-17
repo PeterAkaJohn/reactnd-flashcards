@@ -10,7 +10,7 @@ class Deck extends Component {
   }
   onPress() {
     this.props.navigation.navigate("DeckDetail", {
-      deck: this.props.deck
+      deckName: this.props.deck.title
     });
   }
   render() {

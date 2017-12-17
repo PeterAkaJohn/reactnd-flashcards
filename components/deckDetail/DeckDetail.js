@@ -7,6 +7,8 @@ import {
   Platform
 } from "react-native";
 
+import withDeck from "../hoc/withDeck";
+
 class DeckDetail extends Component {
   constructor() {
     super();
@@ -14,30 +16,21 @@ class DeckDetail extends Component {
     this.onPressAddCard = this.onPressAddCard.bind(this);
     this.onPressStartQuiz = this.onPressStartQuiz.bind(this);
   }
-  static navigationOptions({ navigation }) {
-    const { deck } = navigation.state.params;
-
-    return {
-      title: `${deck.title}`
-    };
-  }
 
   onPressAddCard() {
-    const { deck } = this.props.navigation.state.params;
-    this.props.navigation.navigate("AddCard", { deck });
+    const { deck } = this.props;
+    this.props.navigation.navigate("AddCard", { deckName: deck.title });
   }
 
   onPressStartQuiz() {
-    const { deck } = this.props.navigation.state.params;
+    const { deck } = this.props;
 
     this.props.navigation.navigate("Quiz", {
-      questions: deck.questions,
-      questionsAnswered: 0,
-      deckDetailRouteKey: this.props.navigation.state.key
+      deckName: deck.title
     });
   }
   render() {
-    const { deck } = this.props.navigation.state.params;
+    const { deck } = this.props;
     return (
       <View style={styles.container}>
         <View>
@@ -101,4 +94,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DeckDetail;
+export default withDeck(DeckDetail);
