@@ -1,4 +1,4 @@
-import { GET_DECKS, NEW_DECK } from "../actions";
+import { GET_DECKS, NEW_DECK, NEW_QUESTION } from "../actions";
 
 import { getStartingState } from "../utils/helper";
 
@@ -11,6 +11,8 @@ export function decksReducer(state = {}, action) {
         ...state,
         [action.payload.title]: action.payload
       };
+    case NEW_QUESTION:
+      return action.payload;
     default:
       return state;
   }

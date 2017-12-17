@@ -1,6 +1,11 @@
-import { getDecksFromStorage, saveDeckTitle } from "../utils/api";
+import {
+  getDecksFromStorage,
+  saveDeckTitle,
+  addCardToDeck
+} from "../utils/api";
 export const GET_DECKS = "GET_DECKS";
 export const NEW_DECK = "NEW_DECK";
+export const NEW_QUESTION = "NEW_QUESTION";
 
 function onSuccessGetDecks(data) {
   return {
@@ -32,6 +37,25 @@ export function insertNewDeck(deckName) {
     return saveDeckTitle(deckName).then(
       data => {
         dispatch(onSuccessNewDeck(data));
+        return data;
+      },
+      error => console.log(error)
+    );
+  };
+}
+
+function onSuccessInsertNewQuestion(data) {
+  return {
+    type: NEW_QUESTION,
+    payload: data
+  };
+}
+
+export function insertNewQuestion(deckName, card) {
+  return function(dispatch) {
+    return addCardToDeck(deckName, card).then(
+      data => {
+        dispatch(onSuccessInsertNewQuestion(data));
         return data;
       },
       error => console.log(error)
