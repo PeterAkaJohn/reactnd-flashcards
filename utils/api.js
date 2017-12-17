@@ -42,10 +42,14 @@ export function saveDeckTitle(deckName) {
 
 // card is made up of question and answer strings
 export function addCardToDeck(deckId, card) {
-  return AsyncStorage.mergeItem(
-    STORAGE_KEY,
-    JSON.stringify({
-      [deckId]: [...questions, card]
-    })
-  );
+  return AsyncStorage.getItem(STORAGE_KEY).then(data => {
+    var parsedData = JSON.parse(data);
+    parsedData[deckId].questions.push(card);
+    return AsyncStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(parsedData)
+    ).then(() => {
+      return AsyncStorage.getItem(STORAGE_KEY).then(data => JSON.parse(data));
+    });
+  });
 }
