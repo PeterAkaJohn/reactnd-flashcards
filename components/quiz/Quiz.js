@@ -1,62 +1,64 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  FlatList,
+  StyleSheet,
+  Dimensions
+} from "react-native";
 import { NavigationActions } from "react-navigation";
+import withQuiz from "../hoc/withQuiz";
+import QuestionList from "./QuestionList";
 
 class Quiz extends Component {
   constructor() {
     super();
-
-    this.continueQuiz = this.continueQuiz.bind(this);
+    this.state = {
+      correctAnswers: 0,
+      showResult: false
+    };
     this.toHome = this.toHome.bind(this);
+    this.submitQuiz = this.submitQuiz.bind(this);
   }
 
-  continueQuiz() {
-    const {
-      questions,
-      questionsAnswered,
-      deckDetailRouteKey
-    } = this.props.navigation.state.params;
-
-    this.props.navigation.navigate("Quiz", {
-      questions,
-      questionsAnswered: questionsAnswered + 1,
-      deckDetailRouteKey
-    });
-  }
-  static navigationOptions({ navigation }) {
-    const { questions, questionsAnswered } = navigation.state.params;
-    if (!questionsAnswered) {
-      return {
-        title: `Quiz 0/${questions.length}`
-      };
-    }
+  static navigationOptions() {
     return {
-      title: `Quiz ${questionsAnswered}/${questions.length}`
+      title: `Quiz`
     };
   }
   toHome() {
-    const { deckDetailRouteKey } = this.props.navigation.state.params;
-    this.props.navigation.goBack(deckDetailRouteKey);
+    this.props.navigation.goBack();
+  }
+  submitQuiz() {
+    this.setState({ showResult: true });
   }
   render() {
-    const { questions, questionsAnswered } = this.props.navigation.state.params;
+    const { questions } = this.props;
     return (
       <View>
-        {questions.length > questionsAnswered ? (
-          <TouchableOpacity onPress={this.continueQuiz}>
-            <Text>
-              Quiz Component
-              {this.props.navigation.state.params.questionsAnswered}
-            </Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={this.toHome}>
-            <Text>End Quiz</Text>
-          </TouchableOpacity>
-        )}
+        <QuestionList {...this.props} />
+        <View style={styles.ctas}>
+          {!this.state.showResult ? (
+            <TouchableOpacity onPress={this.submitQuiz}>
+              <Text>submitQuiz</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={this.toHome}>
+              <Text>End Quiz</Text>
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
     );
   }
 }
 
-export default Quiz;
+const styles = StyleSheet.create({
+  ctas: {
+    alignItems: "center",
+    justifyContent: "center"
+  }
+});
+
+export default withQuiz(Quiz);
