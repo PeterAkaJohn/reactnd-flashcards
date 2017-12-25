@@ -10,16 +10,12 @@ import {
 import { NavigationActions } from "react-navigation";
 import withQuiz from "../hoc/withQuiz";
 import QuestionList from "./QuestionList";
+import QuizSummary from "./QuizSummary";
 
 class Quiz extends Component {
   constructor() {
     super();
-    this.state = {
-      correctAnswers: 0,
-      showResult: false
-    };
     this.toHome = this.toHome.bind(this);
-    this.submitQuiz = this.submitQuiz.bind(this);
   }
 
   static navigationOptions() {
@@ -30,14 +26,10 @@ class Quiz extends Component {
   toHome() {
     this.props.navigation.goBack();
   }
-  submitQuiz() {
-    this.setState({ showResult: true });
-    //call redux
-  }
   render() {
     const { questions } = this.props;
     return (
-      <View>
+      <View style={styles.container}>
         {!this.props.quiz.done && (
           <View style={styles.counter}>
             <Text style={styles.counterText}>
@@ -49,36 +41,39 @@ class Quiz extends Component {
         {!this.props.quiz.done ? (
           <QuestionList {...this.props} />
         ) : (
-          <View>
-            <Text>
-              Your score was {this.props.quiz.correct} correct, and{" "}
-              {this.props.quiz.wrong} wrong
-            </Text>
-          </View>
+          <QuizSummary
+            correct={this.props.quiz.correct}
+            wrong={this.props.quiz.wrong}
+            toHome={this.toHome}
+          />
         )}
-
-        <View style={styles.ctas}>
-          <TouchableOpacity onPress={this.toHome}>
-            <Text>Done</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  ctas: {
-    alignItems: "center",
-    justifyContent: "center"
+  container: {
+    flex: 1
   },
   counter: {
     position: "absolute",
-    top: 10,
-    left: 10
+    top: 13,
+    left: 10,
+    width: "100%"
   },
   counterText: {
     fontWeight: "700"
+  },
+  answerContainer: {
+    position: "absolute",
+    top: 5,
+    fontSize: 15
+  },
+  answerText: {
+    paddingTop: 5,
+    justifyContent: "center",
+    fontSize: 15
   }
 });
 

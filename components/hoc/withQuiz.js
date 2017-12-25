@@ -26,8 +26,9 @@ function withQuiz(WrappedComponent) {
 
   function mapStateToProps(state, ownProps) {
     const { deckName } = ownProps.navigation.state.params;
+    const { questions } = state.decks[deckName];
     return {
-      questions: state.decks[deckName].questions,
+      questions: questions,
       quiz: state.quiz
     };
   }
