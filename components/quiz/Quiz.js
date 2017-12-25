@@ -32,22 +32,35 @@ class Quiz extends Component {
   }
   submitQuiz() {
     this.setState({ showResult: true });
+    //call redux
   }
   render() {
     const { questions } = this.props;
     return (
       <View>
-        <QuestionList {...this.props} />
+        {!this.props.quiz.done && (
+          <View style={styles.counter}>
+            <Text style={styles.counterText}>
+              {this.props.quiz.answered}/{this.props.questions.length}
+            </Text>
+          </View>
+        )}
+
+        {!this.props.quiz.done ? (
+          <QuestionList {...this.props} />
+        ) : (
+          <View>
+            <Text>
+              Your score was {this.props.quiz.correct} correct, and{" "}
+              {this.props.quiz.wrong} wrong
+            </Text>
+          </View>
+        )}
+
         <View style={styles.ctas}>
-          {!this.state.showResult ? (
-            <TouchableOpacity onPress={this.submitQuiz}>
-              <Text>submitQuiz</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity onPress={this.toHome}>
-              <Text>End Quiz</Text>
-            </TouchableOpacity>
-          )}
+          <TouchableOpacity onPress={this.toHome}>
+            <Text>Done</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -58,6 +71,14 @@ const styles = StyleSheet.create({
   ctas: {
     alignItems: "center",
     justifyContent: "center"
+  },
+  counter: {
+    position: "absolute",
+    top: 10,
+    left: 10
+  },
+  counterText: {
+    fontWeight: "700"
   }
 });
 

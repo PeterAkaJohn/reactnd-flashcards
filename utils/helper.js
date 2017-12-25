@@ -99,3 +99,12 @@ export function getDefaultDeckObject(deckName) {
     title: deckName
   };
 }
+
+export function getInitQuiz() {
+  return {
+    answered: 0,
+    correct: 0,
+    wrong: 0,
+    done: false
+  };
+}

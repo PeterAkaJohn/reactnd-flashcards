@@ -3,9 +3,12 @@ import {
   saveDeckTitle,
   addCardToDeck
 } from "../utils/api";
+import { getInitQuiz } from "../utils/helper";
 export const GET_DECKS = "GET_DECKS";
 export const NEW_DECK = "NEW_DECK";
 export const NEW_QUESTION = "NEW_QUESTION";
+export const INIT_QUIZ = "INIT_QUIZ";
+export const UPDATE_QUIZ = "UPDATE_QUIZ";
 
 function onSuccessGetDecks(data) {
   return {
@@ -60,5 +63,24 @@ export function insertNewQuestion(deckName, card) {
       },
       error => console.log(error)
     );
+  };
+}
+
+export function initQuiz() {
+  return {
+    type: INIT_QUIZ,
+    payload: getInitQuiz()
+  };
+}
+
+export function updateQuiz(answered, correct, wrong, done) {
+  return {
+    type: UPDATE_QUIZ,
+    payload: {
+      answered,
+      correct,
+      wrong,
+      done
+    }
   };
 }

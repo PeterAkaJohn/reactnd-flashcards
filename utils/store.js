@@ -1,7 +1,7 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
-import { decksReducer } from "../reducers";
+import { decksReducer, quizReducer } from "../reducers";
 
-const rootReducer = combineReducers({ decks: decksReducer });
+const rootReducer = combineReducers({ decks: decksReducer, quiz: quizReducer });
 
 export const store = createStore(rootReducer, applyMiddleware(reduxThunk));
