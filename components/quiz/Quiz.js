@@ -45,6 +45,7 @@ class Quiz extends Component {
           <QuizSummary
             correct={this.props.quiz.correct}
             wrong={this.props.quiz.wrong}
+            totalQuestions={this.props.questions.length}
             toHome={this.toHome}
           />
         )}

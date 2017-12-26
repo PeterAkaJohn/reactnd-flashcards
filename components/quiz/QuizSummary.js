@@ -7,7 +7,12 @@ import {
   Platform,
   Dimensions
 } from "react-native";
-import { yellowBase, greenLight, primaryText } from "../../utils/colors";
+import {
+  yellowBase,
+  greenLight,
+  primaryText,
+  purpleLight
+} from "../../utils/colors";
 
 function QuizSummary(props) {
   return (
@@ -17,6 +22,10 @@ function QuizSummary(props) {
       <Text style={styles.correct}>Correct: {props.correct}</Text>
 
       <Text style={styles.wrong}>Wrong: {props.wrong}</Text>
+
+      <Text style={styles.percentage}>
+        Percentage: {Math.trunc(props.correct * 100 / props.totalQuestions)}%
+      </Text>
 
       <TouchableOpacity style={styles.btn} onPress={props.toHome}>
         <Text style={styles.btnText}>DONE</Text>
@@ -43,6 +52,10 @@ const styles = StyleSheet.create({
   wrong: {
     fontSize: 20,
     color: "red"
+  },
+  percentage: {
+    fontSize: 20,
+    color: purpleLight
   },
   btn: {
     justifyContent: "center",
