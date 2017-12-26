@@ -45,10 +45,10 @@ const Tabs = TabNavigator(
       header: null
     },
     tabBarOptions: {
-      activeTintColor: Platform.OS === "ios" ? primaryText : greenLight,
+      activeTintColor: primaryText,
       style: {
         height: 56,
-        backgroundColor: Platform.OS === "ios" ? greenLight : primaryText,
+        backgroundColor: greenLight,
         shadowColor: "rgba(0, 0, 0, 0.24)",
         shadowOffset: {
           width: 0,
