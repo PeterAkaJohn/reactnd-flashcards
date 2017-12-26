@@ -8,7 +8,9 @@
 
 * follow instructions on your terminal
 
-* I'm using `react-native-deck-swiper`, swipe right = correct and swipe left = wrong, this library throws an error in console but due to time I can't replace it
+* I'm using `react-native-deck-swiper`, swipe right = correct and swipe left = wrong, this library throws an error in console but due to time I can't replace it.
+
+* you should tap on the card to toggle between answer and question
 
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
