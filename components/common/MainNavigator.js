@@ -1,6 +1,5 @@
 import React from "react";
 import { TabNavigator, StackNavigator } from "react-navigation";
-import { Platform } from "react-native";
 import {
   blue,
   purple,
