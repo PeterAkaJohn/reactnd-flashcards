@@ -11,6 +11,7 @@ import { NavigationActions } from "react-navigation";
 import withQuiz from "../hoc/withQuiz";
 import QuestionList from "./QuestionList";
 import QuizSummary from "./QuizSummary";
+import { blueBase } from "../../utils/colors";
 
 class Quiz extends Component {
   constructor() {
@@ -54,7 +55,10 @@ class Quiz extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: blueBase,
+    justifyContent: "center",
+    alignItems: "center"
   },
   counter: {
     position: "absolute",

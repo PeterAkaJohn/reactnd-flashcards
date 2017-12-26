@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import { white } from "../../utils/colors";
+import { white, redLight, primaryText } from "../../utils/colors";
 
 class Deck extends Component {
   constructor() {
@@ -18,10 +18,14 @@ class Deck extends Component {
       <TouchableOpacity onPress={this.onPress}>
         <View style={styles.deckCard}>
           <View>
-            <Text style={styles.deckTitle}>{this.props.deck.title}</Text>
+            <Text style={[styles.defaultText, styles.deckTitle]}>
+              {this.props.deck.title}
+            </Text>
           </View>
           <View>
-            <Text>{this.props.deck.questions.length} cards</Text>
+            <Text style={styles.defaultText}>
+              {this.props.deck.questions.length} cards
+            </Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -36,6 +40,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 30,
     shadowRadius: 3,
     shadowOpacity: 0.8,
     shadowColor: "rgba(0, 0, 0, 0.24)",
@@ -43,12 +49,14 @@ const styles = StyleSheet.create({
       width: 0,
       height: 3
     },
-    backgroundColor: white
+    backgroundColor: redLight
   },
   deckTitle: {
     fontSize: 25
   },
-  deckCardNumber: {}
+  defaultText: {
+    color: primaryText
+  }
 });
 
 export default Deck;

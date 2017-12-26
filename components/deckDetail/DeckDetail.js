@@ -4,10 +4,18 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  Platform
+  Platform,
+  Dimensions
 } from "react-native";
 
 import withDeck from "../hoc/withDeck";
+import {
+  blueBase,
+  redLight,
+  primaryText,
+  purpleLight,
+  pinkLight
+} from "../../utils/colors";
 
 class DeckDetail extends Component {
   constructor() {
@@ -33,18 +41,25 @@ class DeckDetail extends Component {
     const { deck } = this.props;
     return (
       <View style={styles.container}>
-        <View>
+        <View style={styles.deckDetail}>
           <Text style={styles.deckTitle}>{deck.title}</Text>
           <Text style={styles.deckCardNumber}>
             {deck.questions.length} cards
           </Text>
         </View>
-        <View>
-          <TouchableOpacity style={styles.btn} onPress={this.onPressAddCard}>
-            <Text style={styles.btnText}>Add Card</Text>
+        <View style={styles.deckActions}>
+          <TouchableOpacity
+            style={[styles.btn, styles.btnAdd]}
+            onPress={this.onPressAddCard}
+          >
+            <Text style={styles.btnText}>ADD CARD</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn} onPress={this.onPressStartQuiz}>
-            <Text style={styles.btnText}>Start Quiz</Text>
+          <TouchableOpacity
+            disabled={deck.questions.length === 0}
+            style={[styles.btn, styles.btnQuiz]}
+            onPress={this.onPressStartQuiz}
+          >
+            <Text style={styles.btnText}>START QUIZ</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -57,14 +72,37 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 30,
     alignItems: "center",
-    justifyContent: "space-around"
+    justifyContent: "center",
+    backgroundColor: blueBase
   },
   deckTitle: {
-    fontSize: 25
+    fontSize: 25,
+    color: primaryText
   },
   deckCardNumber: {
     fontSize: 18,
-    textAlign: "center"
+    textAlign: "center",
+    color: primaryText
+  },
+  deckDetail: {
+    flex: 1,
+    backgroundColor: redLight,
+    borderRadius: 5,
+    width: Dimensions.get("window").width * 0.7,
+    margin: 30,
+    marginTop: 50,
+    marginBottom: 50,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  deckActions: {
+    flex: 1
+  },
+  btnAdd: {
+    backgroundColor: purpleLight
+  },
+  btnQuiz: {
+    backgroundColor: pinkLight
   },
   btn: {
     justifyContent: "center",
@@ -72,7 +110,6 @@ const styles = StyleSheet.create({
     width: 200,
     marginBottom: 10,
     padding: 10,
-    backgroundColor: "green",
     ...Platform.select({
       ios: {
         borderRadius: 7,
@@ -90,7 +127,10 @@ const styles = StyleSheet.create({
     })
   },
   btnText: {
-    textAlign: "center"
+    textAlign: "center",
+    color: primaryText,
+    fontWeight: "600",
+    fontSize: 18
   }
 });
 

@@ -9,7 +9,13 @@ import {
   TouchableHighlight
 } from "react-native";
 
-import { white, gray } from "../../utils/colors";
+import {
+  white,
+  gray,
+  pinkLight,
+  redLight,
+  primaryText
+} from "../../utils/colors";
 
 class Question extends Component {
   constructor() {
@@ -28,7 +34,7 @@ class Question extends Component {
   render() {
     return (
       <TouchableHighlight
-        underlayColor={white}
+        underlayColor={redLight}
         style={styles.questionContainer}
         onPress={this.toggleShowAnswer}
       >
@@ -51,7 +57,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: "100%",
     width: "100%",
-    backgroundColor: white,
+    backgroundColor: pinkLight,
     borderRadius: 5
   },
   container: {
@@ -60,14 +66,16 @@ const styles = StyleSheet.create({
   questionText: {
     fontSize: 25,
     alignItems: "center",
-    textAlign: "center"
+    textAlign: "center",
+    color: primaryText
   },
   answerText: {
     position: "absolute",
     top: 5,
     left: 0,
     right: 0,
-    fontSize: 16
+    fontSize: 16,
+    color: primaryText
   }
 });
 

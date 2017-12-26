@@ -4,14 +4,17 @@ import { Provider } from "react-redux";
 import { store } from "./utils/store";
 import MainNavigator from "./components/common/MainNavigator";
 import CustomStatusBar from "./components/common/CustomStatusBar";
-import { blue } from "./utils/colors";
+import { blue, greenLight } from "./utils/colors";
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <CustomStatusBar backgroundColor={blue} barStyle="light-content" />
+          <CustomStatusBar
+            backgroundColor={greenLight}
+            barStyle="light-content"
+          />
           <MainNavigator />
         </View>
       </Provider>
@@ -21,8 +24,7 @@ class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: blue
+    flex: 1
   }
 });
 

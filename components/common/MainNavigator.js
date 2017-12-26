@@ -1,8 +1,18 @@
 import React from "react";
 import { TabNavigator, StackNavigator } from "react-navigation";
 import { Platform } from "react-native";
-import { blue, purple, white } from "../../utils/colors";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import {
+  blue,
+  purple,
+  white,
+  greenLight,
+  primaryText
+} from "../../utils/colors";
+import {
+  FontAwesome,
+  Ionicons,
+  MaterialCommunityIcons
+} from "@expo/vector-icons";
 import Decks from "../decks/Decks";
 import AddCard from "../addCard/AddCard";
 import DeckDetail from "../deckDetail/DeckDetail";
@@ -16,7 +26,7 @@ const Tabs = TabNavigator(
       navigationOptions: {
         tabBarLabel: "Decks",
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="ios-bookmarks" size={30} color={tintColor} />
+          <MaterialCommunityIcons name="cards" size={30} color={tintColor} />
         )
       }
     },
@@ -25,7 +35,7 @@ const Tabs = TabNavigator(
       navigationOptions: {
         tabBarLabel: "New Deck",
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="ios-bookmarks" size={30} color={tintColor} />
+          <FontAwesome name="plus" size={30} color={tintColor} />
         )
       }
     }
@@ -35,10 +45,10 @@ const Tabs = TabNavigator(
       header: null
     },
     tabBarOptions: {
-      activeTintColor: Platform.OS === "ios" ? purple : white,
+      activeTintColor: Platform.OS === "ios" ? primaryText : greenLight,
       style: {
         height: 56,
-        backgroundColor: Platform.OS === "ios" ? white : purple,
+        backgroundColor: Platform.OS === "ios" ? greenLight : primaryText,
         shadowColor: "rgba(0, 0, 0, 0.24)",
         shadowOffset: {
           width: 0,
@@ -60,7 +70,7 @@ const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: purple
+        backgroundColor: greenLight
       }
     }
   },
@@ -69,7 +79,7 @@ const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: purple
+        backgroundColor: greenLight
       }
     }
   },
@@ -78,7 +88,7 @@ const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: purple
+        backgroundColor: greenLight
       }
     }
   }

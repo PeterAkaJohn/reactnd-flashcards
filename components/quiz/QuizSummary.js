@@ -4,20 +4,22 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Platform
+  Platform,
+  Dimensions
 } from "react-native";
+import { yellowBase, greenLight, primaryText } from "../../utils/colors";
 
 function QuizSummary(props) {
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 25 }}>Score</Text>
+      <Text style={{ fontSize: 30 }}>Score</Text>
 
       <Text style={styles.correct}>Correct: {props.correct}</Text>
 
       <Text style={styles.wrong}>Wrong: {props.wrong}</Text>
 
       <TouchableOpacity style={styles.btn} onPress={props.toHome}>
-        <Text style={styles.btnText}>Done</Text>
+        <Text style={styles.btnText}>DONE</Text>
       </TouchableOpacity>
     </View>
   );
@@ -28,8 +30,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-around",
-    paddingTop: 70,
-    paddingBottom: 70
+    width: Dimensions.get("window").width * 0.7,
+    marginTop: 70,
+    marginBottom: 90,
+    backgroundColor: yellowBase,
+    borderRadius: 5
   },
   correct: {
     fontSize: 20,
@@ -45,7 +50,7 @@ const styles = StyleSheet.create({
     width: 200,
     marginBottom: 10,
     padding: 10,
-    backgroundColor: "green",
+    backgroundColor: greenLight,
     ...Platform.select({
       ios: {
         borderRadius: 7,
@@ -63,7 +68,10 @@ const styles = StyleSheet.create({
     })
   },
   btnText: {
-    textAlign: "center"
+    textAlign: "center",
+    fontSize: 21,
+    color: primaryText,
+    fontWeight: "700"
   }
 });
 
