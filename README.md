@@ -8,6 +8,8 @@
 
 * follow instructions on your terminal
 
+* I'm using `react-native-deck-swiper`, swipe right = correct and swipe left = wrong
+
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
