@@ -5,8 +5,12 @@ import { store } from "./utils/store";
 import MainNavigator from "./components/common/MainNavigator";
 import CustomStatusBar from "./components/common/CustomStatusBar";
 import { blue, greenLight } from "./utils/colors";
+import { setLocalNotification } from "./utils/helper";
 
 class App extends Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     return (
       <Provider store={store}>

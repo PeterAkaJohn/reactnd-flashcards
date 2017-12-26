@@ -10,6 +10,10 @@ import Swiper from "react-native-deck-swiper";
 import Question from "./Question";
 import { connect } from "react-redux";
 import { updateQuiz } from "../../actions";
+import {
+  clearLocalNotification,
+  setLocalNotification
+} from "../../utils/helper";
 
 class QuestionList extends Component {
   constructor() {
@@ -17,6 +21,7 @@ class QuestionList extends Component {
 
     this.submitCorrect = this.submitCorrect.bind(this);
     this.submitIncorrect = this.submitIncorrect.bind(this);
+    this.onDone = this.onDone.bind(this);
   }
   submitCorrect(cardIndex) {
     const { deck } = this.props;
@@ -36,6 +41,9 @@ class QuestionList extends Component {
 
     this.props.updateQuiz(answered, correct, wrong, done);
   }
+  onDone() {
+    clearLocalNotification().then(setLocalNotification);
+  }
   render() {
     return (
       <Swiper
@@ -47,6 +55,7 @@ class QuestionList extends Component {
         renderCard={question => {
           return <Question question={question} {...this.props} />;
         }}
+        onSwipedAll={this.onDone}
         onSwipedRight={this.submitCorrect}
         onSwipedLeft={this.submitIncorrect}
         cardIndex={0}
