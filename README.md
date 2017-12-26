@@ -8,7 +8,7 @@
 
 * follow instructions on your terminal
 
-* I'm using `react-native-deck-swiper`, swipe right = correct and swipe left = wrong
+* I'm using `react-native-deck-swiper`, swipe right = correct and swipe left = wrong, this library throws an error in console but due to time I can't replace it
 
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
