@@ -46,6 +46,7 @@ class Quiz extends Component {
             correct={this.props.quiz.correct}
             wrong={this.props.quiz.wrong}
             totalQuestions={this.props.questions.length}
+            restart={this.props.initQuiz}
             toHome={this.toHome}
           />
         )}

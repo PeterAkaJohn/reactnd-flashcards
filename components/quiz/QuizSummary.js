@@ -26,10 +26,14 @@ function QuizSummary(props) {
       <Text style={styles.percentage}>
         Percentage: {Math.trunc(props.correct * 100 / props.totalQuestions)}%
       </Text>
-
-      <TouchableOpacity style={styles.btn} onPress={props.toHome}>
-        <Text style={styles.btnText}>DONE</Text>
-      </TouchableOpacity>
+      <View>
+        <TouchableOpacity style={styles.btn} onPress={props.toHome}>
+          <Text style={styles.btnText}>DONE</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btn} onPress={props.restart}>
+          <Text style={styles.btnText}>RESTART</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

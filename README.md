@@ -1,4 +1,4 @@
-## Usage:
+## Usage: tested only for IOS
 
 * Run following commands on your terminal after accessing the folder of this project
 ```
