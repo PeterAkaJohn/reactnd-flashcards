@@ -1,17 +1,17 @@
 import React from "react";
 import { TabNavigator, StackNavigator } from "react-navigation";
 import {
+  FontAwesome,
+  Ionicons,
+  MaterialCommunityIcons
+} from "@expo/vector-icons";
+import {
   blue,
   purple,
   white,
   greenLight,
   primaryText
 } from "../../utils/colors";
-import {
-  FontAwesome,
-  Ionicons,
-  MaterialCommunityIcons
-} from "@expo/vector-icons";
 import Decks from "../decks/Decks";
 import AddCard from "../addCard/AddCard";
 import DeckDetail from "../deckDetail/DeckDetail";
