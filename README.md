@@ -1,4 +1,4 @@
-## Usage: tested only for IOS
+## Usage: tested only for IOS Iphone7 using mac simulator
 
 * Run following commands on your terminal after accessing the folder of this project
 ```
