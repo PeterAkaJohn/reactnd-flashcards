@@ -27,7 +27,7 @@ class DeckDetail extends Component {
 
   onPressAddCard() {
     const { deck } = this.props;
-    this.props.navigation.navigate("AddCard", { deckName: deck.title });
+    this.props.navigation.navigate("AddCardTab", { deckName: deck.title });
   }
 
   onPressStartQuiz() {

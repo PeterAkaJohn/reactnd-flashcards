@@ -13,7 +13,7 @@ import {
   primaryText
 } from "../../utils/colors";
 import Decks from "../decks/Decks";
-import AddCard from "../addCard/AddCard";
+import AddCardTab from "../addCard/AddCardTab";
 import DeckDetail from "../deckDetail/DeckDetail";
 import Quiz from "../quiz/Quiz";
 import NewDeck from "../newdeck/NewDeck";
@@ -73,8 +73,8 @@ const MainNavigator = StackNavigator({
       }
     }
   },
-  AddCard: {
-    screen: AddCard,
+  AddCardTab: {
+    screen: AddCardTab,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

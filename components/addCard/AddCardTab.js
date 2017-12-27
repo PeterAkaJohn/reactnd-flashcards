@@ -11,14 +11,13 @@ import { connect } from "react-redux";
 import { insertNewQuestion } from "../../actions";
 import { blueBase, greenLight, primaryText } from "../../utils/colors";
 
-class AddCard extends Component {
+class AddCardTab extends Component {
   constructor() {
     super();
     this.state = {
       question: "",
       answer: ""
     };
-
     this.submitNewQuestion = this.submitNewQuestion.bind(this);
   }
   static navigationOptions() {
@@ -115,4 +114,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, { insertNewQuestion })(AddCard);
+export default connect(null, { insertNewQuestion })(AddCardTab);
